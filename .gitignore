@@ -1,0 +1,16 @@
+# Virtual environment
+venv/
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Environment file
+.env
+
+# SQLite database files
+*.db
+
+# IDE/editor-specific files
+.vscode/
+.idea/
