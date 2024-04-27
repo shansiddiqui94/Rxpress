@@ -35,7 +35,7 @@ class Patient(db.Model, SerializerMixin):
     __tablename__ = 'patient'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user_auth.id'), nullable=False)      
+    user_id = db.Column(db.Integer, db.ForeignKey('userAuth.id'), nullable=False)      
     name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(100)) # optional, add valadations for numbers
     insurance = db.Column(db.String(60)) # A drop-down menu of preExiting insurance, and other 
@@ -45,15 +45,16 @@ class Patient(db.Model, SerializerMixin):
 
 #Pharmacist Model
 class Pharmacist(db.Model, SerializerMixin):
-    __tablename__ = 'pharamcist'
+    __tablename__ = 'pharmacist'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeginKey('user_auth.id'), nullable=False) #add Foregin Key to user
+    user_id = db.Column(db.Integer, db.ForeignKey('userAuth.id'), nullable=False) #add ForeignKey to user
     name = db.Column(db.String(100), nullable=False)
     pharmacy = db.Column(db.String(100), nullable=False)
 
     #Relationship with UserAuth
-    user = db.realtionship('UserAuth', backref='pharmacist') #Backref to UserAuth
+    user = db.relationship('UserAuth', backref='pharmacist')  # Backref to UserAuth
+
 
 #Prescription Model
 class Prescription(db.Model, SerializerMixin):
@@ -65,6 +66,7 @@ class Prescription(db.Model, SerializerMixin):
     medication_name = db.Column(db.String(100), nullable=False)
     dosage = db.Column(db.String(100), nullable=False)  # Using string to accommodate different dosage formats
     instructions = db.Column(db.String(255))  # Optional instructions
+    medication_description = db.Column(db.String(255))
     status = db.Column(db.String(20), nullable=False)  # Status: "pending", "approved", etc.
 
     # Relationships with Patient and Pharmacist
