@@ -77,13 +77,27 @@ reference_drugs = [
     
 ]
 
+# Define the function to seed the database
 def seed_prescriptions():
-    """Seeds the database with sample reference drug prescriptions."""
-    for drug_data in reference_drugs:
-        prescription = Prescription(**drug_data)
-        db.session.add(prescription)
-    db.session.commit()
+    """Seeds the database with the list of Prescription instances."""
+    # Clear the existing data if needed
+    # Be careful with this in production environments
+    Prescription.query.delete()
 
-# Run the seeding function (usually outside the script)
+    # Create Prescription instances from the reference_drugs list
+    prescriptions = [Prescription(**drug_data) for drug_data in reference_drugs]
+
+    # Add the Prescription instances to the session
+    db.session.add_all(prescriptions)
+
+    try:
+        # Commit the session to save the new records
+        db.session.commit()
+    except Exception as e:
+        # Rollback the transaction in case of an error
+        db.session.rollback()
+        print(f"Error seeding the database: {e}")
+
+# Run the seeding function
 if __name__ == "__main__":
     seed_prescriptions()
