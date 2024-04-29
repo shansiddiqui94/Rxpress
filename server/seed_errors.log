@@ -1,0 +1,4 @@
+ERROR:root:Error seeding the database: (sqlite3.IntegrityError) NOT NULL constraint failed: prescription.patient_id
+[SQL: INSERT INTO prescription (patient_id, pharmacist_id, medication_name, dosage, instructions, medication_description, status) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: (None, None, 'Aspirin', '325mg', None, 'A common pain reliever and blood thinner.', None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
