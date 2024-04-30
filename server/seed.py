@@ -1,5 +1,7 @@
 from app import app, db
 from models import Patient, Pharmacist, Prescription
+import random
+
 # import logging
 
 # logging.basicConfig(level=logging.ERROR, filename='seed_errors.log')
@@ -60,8 +62,8 @@ def seed_prescriptions():
     patients = Patient.query.all()  # Fetch existing patients
     pharmacists = Pharmacist.query.all()  # Fetch existing pharmacists
     
-    patient = patients[0]  # Use the first patient
-    pharmacist = pharmacists[0]  # Use the first pharmacist
+    # patient = patients  # Use the first patient
+    # pharmacist = pharmacists  # Use the first pharmacist
     
     reference_drugs = [
     {
@@ -170,8 +172,8 @@ def seed_prescriptions():
     
     prescriptions = [
         Prescription(
-            patient_id=patient.id,
-            pharmacist_id=pharmacist.id,
+            patient_id=random.choice(patients).id,  # Randomly select a patient
+            pharmacist_id=random.choice(pharmacists).id,  # Randomly select a pharmacist
             medication_name=drug["medication_name"],
             dosage=drug["dosage"],
             instructions=drug["instructions"],
