@@ -113,8 +113,17 @@ migrate = Migrate(app, db)
 #     serialized_patients = [p.to_dict() for p in patients]
 #     return jsonify(serialized_patients), 200
 
+# Patient Routes 
+# Patient by ID
+@app.route('/patient/<int:id>', methods=['GET'])
+def patient_byID(id):
+    pt = Patient.query.get(id)
 
-# Patient Routes
+    if not pt:
+        return jsonify({'error': 'Prescription not found'}), 404
+    
+    return jsonify(pt.to_dict()), 200
+
 # Patient Routes
 @app.route('/patient/prescriptions', methods=['GET'])
 def patient_prescriptions():
