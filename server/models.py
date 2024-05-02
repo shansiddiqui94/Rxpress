@@ -28,7 +28,7 @@ class Patient(db.Model):
     name = db.Column(db.String(100), nullable=False)  # Patient name
     address = db.Column(db.String(255))  # Patient address
     insurance = db.Column(db.String(100))  # Insurance type or company
-    
+
      # Define the `to_dict()` method to convert the object to a dictionary
     def to_dict(self):
         return {
@@ -47,7 +47,12 @@ class Pharmacist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)  # Pharmacist name
     pharmacy = db.Column(db.String(100))  # Pharmacy name or affiliation
-
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "pharmacy_name": self.pharmacy,
+        }
 
 #----------------------------------------------------------------------------------------
 

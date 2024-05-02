@@ -538,6 +538,56 @@ def get_pharmacist_by_id(id):
     
     return jsonify(pharmacist.to_dict()), 200
 
+# Create a new pharmacist
+@app.route('/pharmacists', methods=['POST'])
+def create_pharmacist():
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+    
+    # Check for required fields
+    if 'name' not in data or 'pharmacy' not in data:
+        return jsonify({"error": "Fields 'name' and 'pharmacy' are required"}), 400
+
+    try:
+        new_pharmacist = Pharmacist(
+            name=data['name'],
+            pharmacy=data['pharmacy']
+        )
+        
+        db.session.add(new_pharmacist)  # Add the new pharmacist to the database
+        db.session.commit()
+
+        return jsonify(new_pharmacist.to_dict()), 201  # Return the created pharmacist and status code 201
+
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({"error": "Pharmacist with similar details already exists"}), 409  # Conflict if duplicate
+
+    except ValueError as e:
+        db.session.rollback()
+        return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+
+
+# Delete a pharmacist by ID
+@app.route('/pharmacists/<int:id>', methods=['DELETE'])
+def delete_pharmacist(id):
+    pharmacist = Pharmacist.query.get(id)  # Retrieve pharmacist by ID
+    
+    if not pharmacist:
+        return jsonify({"error": "Pharmacist not found"}), 404
+    
+    try:
+        db.session.delete(pharmacist)  # Delete the pharmacist
+        db.session.commit()
+
+        return jsonify({"message": f"Pharmacist with ID {id} deleted successfully"}), 200
+
+    except ValueError as e:
+        db.session.rollback()
+        return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+
 
 # Prescription Routes
 
