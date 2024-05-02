@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import PatientDash from './components/PatientDash'
 import './App.css'
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <>
       <div>
         <p>Hello World</p>
+        <PatientDash/>
       </div>
     </>
   )
