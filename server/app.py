@@ -313,11 +313,17 @@
 
 # Second Routes versions: 
 
+
+
+
+
+
 import os
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError  
 from flask_migrate import Migrate
+from flask_cors import CORS
 from models import Patient, Prescription, Drug, Pharmacist, Basket, db
 
 # Set base directory and database URI
@@ -326,6 +332,9 @@ DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db'
 
 # Create Flask app
 app = Flask(__name__)
+
+
+CORS(app, resources={r"*": {"origins": "*"}})
 
 # Configure Flask app
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE
