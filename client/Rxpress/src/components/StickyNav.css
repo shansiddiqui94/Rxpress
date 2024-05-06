@@ -1,0 +1,57 @@
+
+:root {
+  --nav-height: 60px; /* Define default height for nav bar */
+  --nav-transition: 0.3s ease-in-out; /* Smooth transition */
+}
+
+.sticky-nav .logo {
+  width: 100px; /* Adjust the size of the logo */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Space between the logo and navigation links */
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  width: 100%; /* Full width of the viewport */
+  transition: background-color var(--nav-transition); /* Smooth background color transition */
+  display: flex; /* Horizontal layout */
+  align-items: center; /* Vertical alignment */
+  padding: 10px;
+}
+
+.logo {
+  height: 40px; /* Adjust to desired logo size */
+  margin-right: 20px;
+}
+
+.nav-links {
+  list-style: none; /* No list bullets */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Horizontal layout */
+}
+
+.nav-links li {
+  margin-right: 20px; /* Space between nav links */
+}
+
+.nav-links a {
+  text-decoration: none; /* No underline */
+  color: white; /* Text color */
+}
+
+.nav-links a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+
+
+

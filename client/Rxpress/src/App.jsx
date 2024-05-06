@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import PatientDash from './components/PatientDash'
 import './App.css'
+// import StickyNav from './components/StickyNav'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <div>
-        <p>Hello World</p>
-        <PatientDash/>
+        {/* <StickyNav/> */}
+      
       </div>
     </>
   )
