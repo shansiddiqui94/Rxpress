@@ -7,19 +7,6 @@ from datetime import datetime
 db = SQLAlchemy()
 
 #Patient Model
-# class Patient(db.Model, SerializerMixin):
-#     __tablename__ = 'patient'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     address = db.Column(db.String(100))
-#     insurance = db.Column(db.String(60))
-
-#     # Relationship with Prescription model (one-to-many)
-#     prescriptions = db.relationship("Prescription", back_populates='patient')
-#     serialize_rules = ['-prescriptions.patient']
-# #----------------------------------------------------------------------------------------
-# New patient model:
 
 class Patient(db.Model):
     __tablename__ = 'patient'
@@ -39,8 +26,8 @@ class Patient(db.Model):
         }
 
 
-#----------------------------------------------------------------------------------------
-# New Pharmacist model
+
+# Pharmacist model
 class Pharmacist(db.Model):
     __tablename__ = 'pharmacist'
 
@@ -54,22 +41,9 @@ class Pharmacist(db.Model):
             "pharmacy_name": self.pharmacy,
         }
 
-#----------------------------------------------------------------------------------------
 
-#Pharmacist Model
 
-# class Pharmacist(db.Model, SerializerMixin):
-#     __tablename__ = 'pharmacist'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     pharmacy = db.Column(db.String(100), nullable=False)
-
-#     # Relationship with Prescription model (one-to-many)
-#     prescriptions = db.relationship("Prescription", back_populates='pharmacist')
-#     serialize_rules = ['-prescriptions.pharmacist']
-
-#----------------------------------------------------------------------------------------
 #Drug Model NEW:
 
 
@@ -102,27 +76,7 @@ class Drug(db.Model):
         }
 
 
-
-#----------------------------------------------------------------------------------------
-
-#Drug Model
-# class Drug(db.Model, SerializerMixin):
-#     __tablename__ = 'drug'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     ndc_id = db.Column(db.String(10), nullable=False)  # NDC identifier with uniqueness constraint, no two rows of ndc are the same
-#     name = db.Column(db.String(100), nullable=False)
-#     description = db.Column(db.String(255))
-#     dosage_form = db.Column(db.String(50))  # e.g., tablet, capsule, liquid
-#     strength = db.Column(db.String(50))  # e.g., 10mg, 500mg/mL)
-
-#     # Relationship with Prescription model (one-to-many)
-#     prescriptions = db.relationship("Prescription", back_populates='drug')
-#     serialize_rules = ['-prescriptions.drug']
-
-
-#----------------------------------------------------------------------------------------
-# Prescription Model nEW:
+# Prescription Model 
 class Prescription(db.Model):
     __tablename__ = 'prescription'
 
@@ -139,31 +93,11 @@ class Prescription(db.Model):
     patient = db.relationship('Patient')  # Link to Patient
     pharmacist = db.relationship('Pharmacist')  # Link to Pharmacist
 
-#----------------------------------------------------------------------------------------
 
-# Prescription Model
-# class Prescription(db.Model, SerializerMixin):
-#     __tablename__ = 'prescription'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'), nullable=False)
-#     drug_id = db.Column(db.Integer, db.ForeignKey('drug.id'), nullable=False)
-#     pharmacist_id = db.Column(db.Integer, db.ForeignKey('pharmacist.id'), nullable=False)
-#     instructions = db.Column(db.String(255))
-#     # Add a field for the date the prescription was created
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-#     # Add a field for the status (e.g., pending, approved, rejected)
-#     status = db.Column(db.String(50), default='pending')
 
-#     patient = db.relationship("Patient")
-#     drug = db.relationship("Drug")
-#     pharmacist = db.relationship("Pharmacist")
-#     serialize_rules = ['-patient.prescriptions', '-drug.prescriptions', '-pharmacist.prescriptions']
 
 #----------------------------------------------------------------------------------------
-
-#----------------------------------------------------------------------------------------
-
 
 # Basket Model (Optional)
 class Basket(db.Model, SerializerMixin):
