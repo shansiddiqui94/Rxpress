@@ -1,0 +1,11 @@
+/* dashboard.css */
+.dashboard-container {
+    padding: 20px;
+  }
+  
+  .patient-results {
+    display: flex; 
+    flex-wrap: wrap; /* Allow cards to wrap to multiple lines */
+    gap: 20px; /* Spacing between cards */
+  }
+  

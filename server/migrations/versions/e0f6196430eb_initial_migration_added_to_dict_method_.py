@@ -1,8 +1,8 @@
-"""new initial migration
+"""Initial migration + added to_dict method to prescription
 
-Revision ID: ed6553e11bbe
+Revision ID: e0f6196430eb
 Revises: 
-Create Date: 2024-04-30 20:04:24.208084
+Create Date: 2024-05-06 14:27:58.033034
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ed6553e11bbe'
+revision = 'e0f6196430eb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,28 +25,29 @@ def upgrade():
     sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('dosage_form', sa.String(length=50), nullable=True),
     sa.Column('strength', sa.String(length=50), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('ndc_id')
     )
     op.create_table('patient',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
-    sa.Column('address', sa.String(length=100), nullable=True),
-    sa.Column('insurance', sa.String(length=60), nullable=True),
+    sa.Column('address', sa.String(length=255), nullable=True),
+    sa.Column('insurance', sa.String(length=100), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('pharmacist',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
-    sa.Column('pharmacy', sa.String(length=100), nullable=False),
+    sa.Column('pharmacy', sa.String(length=100), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('prescription',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('patient_id', sa.Integer(), nullable=False),
-    sa.Column('drug_id', sa.Integer(), nullable=False),
-    sa.Column('pharmacist_id', sa.Integer(), nullable=False),
-    sa.Column('instructions', sa.String(length=255), nullable=True),
+    sa.Column('drug_id', sa.Integer(), nullable=True),
+    sa.Column('patient_id', sa.Integer(), nullable=True),
+    sa.Column('pharmacist_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('instructions', sa.String(length=255), nullable=True),
     sa.Column('status', sa.String(length=50), nullable=True),
     sa.ForeignKeyConstraint(['drug_id'], ['drug.id'], ),
     sa.ForeignKeyConstraint(['patient_id'], ['patient.id'], ),

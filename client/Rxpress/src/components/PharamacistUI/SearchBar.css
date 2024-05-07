@@ -1,0 +1,25 @@
+.search-form {
+    display: flex; /* Arrange input and button horizontally */
+    align-items: center; /* Vertically center elements */
+    margin-bottom: 20px; /* Add spacing below the search bar */
+  }
+  
+  .search-form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Rounded left corners */
+    flex: 1; /* Allow input to take up available space */
+  }
+  
+  .search-form button {
+    padding: 10px 15px;
+    background-color: #4CAF50; /* Example color */
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0; /* Rounded right corners */
+    cursor: pointer;
+  }
+  
+  .search-form button:hover {
+    background-color: #45a049; /* Slightly darker on hover */
+  }
