@@ -1,0 +1,50 @@
+/* ModalContent.css */
+
+/* Backdrop for the modal */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.75); /* Dark semi-transparent backdrop */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50; /* High z-index to ensure modal is on top */
+}
+
+/* Modal container with flex layout for two columns */
+.modal-split {
+  background-color: white; /* Solid white background */
+  width: 80vw; /* 80% of viewport width */
+  height: 60vh; /* 60% of viewport height */
+  display: flex; /* Flex layout */
+  justify-content: space-between; /* Separate left and right portions */
+  padding: 20px; /* Padding for spacing */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Vertical divider to separate left and right sides */
+.divider {
+  border-left: 2px solid #ccc; /* Light gray divider */
+  height: 100%; /* Full height of the modal */
+}
+
+/* Modal content for the left and right sides */
+.modal-content-left,
+.modal-content-right {
+  flex: 1; /* Each side takes up equal space */
+  padding: 10px; /* Padding for spacing */
+}
+
+/* Styling for the close button */
+.modal-close-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px; /* Optional margin for spacing */
+}

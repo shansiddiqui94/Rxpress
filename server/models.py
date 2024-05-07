@@ -94,7 +94,27 @@ class Prescription(db.Model):
     pharmacist = db.relationship('Pharmacist')  # Link to Pharmacist
 
 
-
+    # Define to_dict() Method
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "drug_id": self.drug_id,
+            "patient_id": self.patient_id,
+            "pharmacist_id": self.pharmacist_id,
+            "created_at": self.created_at,
+            "instructions": self.instructions,
+            "status": self.status,
+            # Include related data from relationships, if desired
+            "drug": self.drug.name if self.drug else None,
+            "patient": {
+                "id": self.patient.id,
+                "name": self.patient.name,
+            } if self.patient else None,
+            "pharmacist": {
+                "id": self.pharmacist.id,
+                "name": self.pharmacist.name,
+            } if self.pharmacist else None,
+        }
 
 
 #----------------------------------------------------------------------------------------

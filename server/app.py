@@ -142,6 +142,36 @@ def create_patient():
         db.session.rollback()
         return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
+#Patient search by name
+@app.route('/patients/search', methods=['GET'])
+def search_patients():
+    # Retrieve the search term from the query parameters
+    search_term = request.args.get('name')
+
+    # Validate that a search term was provided
+    if not search_term or search_term.strip() == '':
+        return jsonify({"error": "Search term 'name' is required"}), 400
+
+    try:
+        # Perform a case-insensitive search for patients matching the search term
+        patients = Patient.query.filter(Patient.name.ilike(f'%{search_term}%')).all()
+
+        # If no matching patients are found, return a message indicating this
+        if not patients:
+            return jsonify({"message": f"No patients found matching the term '{search_term}'"}), 200
+
+        # Convert the found patients to a list of dictionaries
+        results = [patient.to_dict() for patient in patients]
+
+        # Return the results as JSON with a success status code
+        return jsonify(results), 200
+
+    except ValueError as e:  
+        print(f"Error while searching for patients: {str(e)}")
+
+        return jsonify({"error": "An unexpected error occurred while searching for patients"}), 500
+
+
 
 # READ - Get a specific patient by ID
 @app.route('/patients/<int:id>', methods=['GET'])
