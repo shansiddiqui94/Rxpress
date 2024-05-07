@@ -116,12 +116,12 @@
 
 // _________________REVISED PHARMACY DASHBOARD________________________________
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import PatientCard from './PatientCard';
 import './dashboard.css';
 
-function PharmacistDashboard() {
+function PharmacistDashboard({ onOpenModal }) {
   const [patients, setPatients] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -181,7 +181,9 @@ function PharmacistDashboard() {
           <p>{`Error: ${error}`}</p>
         ) : patients.length > 0 ? (
           patients.map((patient) => (
-            <PatientCard key={patient.id} patient={patient} />
+            <PatientCard  key={patient.id} 
+            patient={patient} 
+            onOpenModal={onOpenModal} />
           ))
         ) : (
           <p>No patients found.</p>
