@@ -2,6 +2,7 @@ import './App.css'
 import { useState } from 'react'
 import PharmacistDashboard from './components/PharamacistUI/PharmacistDashboard'
 import EditInformationModal from './components/PharamacistUI/PharmModal/EditInformationModal'
+// import PatientDashboard from './components/PatientUI/PatientDashboard';
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
@@ -31,6 +32,8 @@ function App() {
             }}
           />
         )}
+          {/* <PatientDashboard/> */}
+
       </div>
     </>
   );

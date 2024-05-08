@@ -1,0 +1,47 @@
+.search-and-add-container {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .search-and-add-container h2 {
+    color: #1A73E8; /* Blue heading */
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #1A73E8; /* Blue button */
+    color: #fff; /* White text */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .search-results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .search-results li {
+    margin-bottom: 10px;
+    color: #333; /* Dark text */
+  }
+  
+  .search-results li button {
+    background-color: #4CAF50; /* Green button for "Add to Basket" */
+    color: #fff; /* White text */
+    margin-left: 10px;
+  }
+  

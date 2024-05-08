@@ -12,7 +12,7 @@ function PharmacistDashboard({ onOpenModal }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null); // To hold any fetch error
   const [selectedPatientId, setSelectedPatientId] = useState(null); // Track selected patient
-  const [prescriptions, setPrescriptions] = useState(null)
+  const [prescriptions, setPrescriptions] = useState([])
 
   // Function to fetch patients based on a search term
   const fetchPatients = (query = '') => {

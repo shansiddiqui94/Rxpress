@@ -29,15 +29,29 @@ migrate = Migrate(app, db)
 
 # Drug Routes
 
+#  Get Drug by name
 @app.route('/drugs', methods=['GET', 'POST'])
 def drugs():
     if request.method == 'GET':
         try:
-            drugs = Drug.query.all()  # Retrieve all drugs
-            all_drugs = [drug.to_dict() for drug in drugs]
-            return jsonify(all_drugs), 200  # Return all drugs
+            name = request.args.get('name')
+            if not name:
+                return jsonify({'error': 'Missing name query parameter'}), 400 
+
+            drugs = db.session.query(Drug).join(Prescription).filter(Drug.name == name).all()
+
+            # Format results including prescriptions
+            results = []
+            for drug in drugs:
+                drug_dict = drug.to_dict()
+                drug_dict['prescriptions'] = [p.to_dict() for p in drug.prescriptions]
+                results.append(drug_dict)
+
+            return jsonify(results), 200 
+
         except ValueError as e:
             return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
 
     elif request.method == 'POST':
         data = request.get_json()
