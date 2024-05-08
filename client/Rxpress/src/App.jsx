@@ -1,32 +1,42 @@
 import './App.css'
 import { useState } from 'react'
-// import StickyNav from './components/StickyNav'
 import PharmacistDashboard from './components/PharamacistUI/PharmacistDashboard'
 import EditInformationModal from './components/PharamacistUI/PharmModal/EditInformationModal'
+// import PatientDashboard from './components/PatientUI/PatientDashboard';
+
 function App() {
-  const [openModal, setOpenModal] = useState(false); 
-  const [patientId, setPatientId] = useState(null)
+  const [openModal, setOpenModal] = useState(false);
+  const [patientId, setPatientId] = useState(null);
+  const [prescriptions, setPrescriptions] = useState(null); // State to store prescriptions
 
   const handleOpenModal = (patientId) => {
     setPatientId(patientId);
     setOpenModal(true);
- }
+  };
+
+  const handleFetchPrescriptions = (prescriptions) => {
+    setPrescriptions(prescriptions); // Store fetched prescriptions
+  };
 
   return (
     <>
       <div>
-        {/* <StickyNav/> */}
-        <PharmacistDashboard onOpenModal={handleOpenModal} />
+        <PharmacistDashboard onOpenModal={handleOpenModal} onFetchPrescriptions={handleFetchPrescriptions} /> 
         {openModal && (
-       <EditInformationModal 
-          onClose={() => setOpenModal(false)} 
-          openModal={handleOpenModal} // Pass openModal here
-       /> 
-    )}
+          <EditInformationModal
+            patientId={patientId}
+            prescriptions={prescriptions}  // Pass prescriptions here!
+            onClose={() => { 
+              setOpenModal(false);
+              setPrescriptions(null); // Reset prescriptions when closing
+            }}
+          />
+        )}
+          {/* <PatientDashboard/> */}
 
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

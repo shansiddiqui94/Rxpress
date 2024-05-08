@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Modal from './ModalContent'; 
 
-const EditInformationModal = ({ onClose, patientId }) => {
+const EditInformationModal = ({ onClose, patientId, prescriptions }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [prescriptionData, setPrescriptionData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  
   useEffect(() => {
     const fetchPrescription = () => { 
       if (!patientId) return; // Stop if there's no patientId
 
       setIsLoading(true);
 
-      fetch(`/api/prescriptions/${patientId}`) 
+      fetch(`http://127.0.0.1:5555/prescriptions/${patientId}`) 
         .then(response => {
           if (!response.ok) {
             throw new Error('Failed to fetch prescription');
@@ -41,6 +41,7 @@ const EditInformationModal = ({ onClose, patientId }) => {
   const openModal = (id) => {
     setPatientId(id);
     setModalOpen(true);
+    console.log("helllo")
   };
 
   const closeModal = () => {
@@ -50,16 +51,16 @@ const EditInformationModal = ({ onClose, patientId }) => {
   };
 
 
-  const originalContent = (
-    <div>
-      <p>Information to be updated:</p>
-      <ul>
-        <li>Update patient name</li>
-        <li>Update age</li>
-        <li>Update condition</li>
-      </ul>
-    </div>
-  );
+  // const originalContent = (
+  //   <div>
+  //     <p>Information to be updated:</p>
+  //     <ul>
+  //       <li>Update patient name</li>
+  //       <li>Update age</li>
+  //       <li>Update condition</li>
+  //     </ul>
+  //   </div>
+  // );
 
   const updatedContent = (
     <div>
@@ -73,22 +74,38 @@ const EditInformationModal = ({ onClose, patientId }) => {
   );
 
   return ( // The return statement!
-    <div className="flex min-h-screen flex-col items-center justify-center py-12">
-      <button
-        className="bg-blue-500 text-white px-8 py-4 rounded"
-        onClick={() => openModal(patientId)} 
-      >
-        Open Edit Modal
-      </button>   
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        title="Edit Patient Information"
-        leftContent={isLoading ? <p>Loading prescription...</p> : originalContent}
-        rightContent={updatedContent}
-        prescriptionData={prescriptionData} 
-      />
-    </div>
+  <div className="flex min-h-screen flex-col items-center justify-center py-12">
+  <button 
+    className="bg-blue-500 text-white px-8 py-4 rounded"
+    onClick={() => openModal(patientId)} 
+  >
+    Open Edit Modal
+  </button> 
+
+  {/* Conditional Rendering of Modal */}
+  {isModalOpen && ( 
+    <Modal
+      // ... existing props 
+      leftContent={isLoading ? <p>Loading prescription...</p> : 
+                   prescriptions ? ( 
+                     <div>
+                       <p>Prescription:</p>
+                       <ul>
+                         {prescriptions.map(prescription => (
+                           <li key={prescription.id}>
+                             Medication: {prescription.drug.name} 
+                             Dosage: {prescription.instructions} 
+                           </li>
+                         ))}
+                       </ul> 
+                     </div> 
+                   ) : (
+                     <p>No prescriptions found.</p> 
+                   )
+                 }
+    />
+  )} 
+</div>
   );
 };
 

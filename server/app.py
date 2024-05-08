@@ -29,15 +29,29 @@ migrate = Migrate(app, db)
 
 # Drug Routes
 
+#  Get Drug by name
 @app.route('/drugs', methods=['GET', 'POST'])
 def drugs():
     if request.method == 'GET':
         try:
-            drugs = Drug.query.all()  # Retrieve all drugs
-            all_drugs = [drug.to_dict() for drug in drugs]
-            return jsonify(all_drugs), 200  # Return all drugs
+            name = request.args.get('name')
+            if not name:
+                return jsonify({'error': 'Missing name query parameter'}), 400 
+
+            drugs = db.session.query(Drug).join(Prescription).filter(Drug.name == name).all()
+
+            # Format results including prescriptions
+            results = []
+            for drug in drugs:
+                drug_dict = drug.to_dict()
+                drug_dict['prescriptions'] = [p.to_dict() for p in drug.prescriptions]
+                results.append(drug_dict)
+
+            return jsonify(results), 200 
+
         except ValueError as e:
             return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
 
     elif request.method == 'POST':
         data = request.get_json()
@@ -170,6 +184,24 @@ def search_patients():
         print(f"Error while searching for patients: {str(e)}")
 
         return jsonify({"error": "An unexpected error occurred while searching for patients"}), 500
+
+
+
+#Prescription Fetching by PatientID
+@app.route('/patients/<int:patient_id>/prescriptions', methods=['GET'])
+def get_prescriptions_by_patient(patient_id):
+    patient = Patient.query.get(patient_id)
+
+    if not patient:
+        return jsonify({"error": f"Patient with ID {patient_id} not found"}), 404
+
+    prescriptions = patient.prescriptions  # Access prescriptions through the relationship
+    prescription_list = [pres.to_dict() for pres in prescriptions]
+
+    return jsonify(prescription_list), 200
+
+
+
 
 
 

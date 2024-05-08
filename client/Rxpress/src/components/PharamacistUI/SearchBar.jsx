@@ -20,6 +20,7 @@ const SearchBar = ({ onSearch, searchTerm, onSearchTermChange }) => {
   return (
     <form onSubmit={handleSubmit} className="search-form">
       <input
+        className='searchbox'
         type="text"
         placeholder="Search patient by name"
         value={searchTerm} // Pass the searchTerm from props
