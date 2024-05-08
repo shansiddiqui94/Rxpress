@@ -23,3 +23,7 @@
   .search-form button:hover {
     background-color: #45a049; /* Slightly darker on hover */
   }
+  .searchbox{
+    background-color: #ccc;
+    color: black;
+  }

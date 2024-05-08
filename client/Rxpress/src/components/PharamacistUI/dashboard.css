@@ -1,11 +1,31 @@
 /* dashboard.css */
+body { /* Or a more specific container if you prefer */
+  background-color: white; /* White background */
+  color: black;  /* Default text color in black */
+  font-family: Arial, sans-serif; /* A simple, classic font */
+}
+
 .dashboard-container {
-    padding: 20px;
-  }
-  
-  .patient-results {
-    display: flex; 
-    flex-wrap: wrap; /* Allow cards to wrap to multiple lines */
-    gap: 20px; /* Spacing between cards */
-  }
-  
+  padding: 20px;
+}
+
+.patient-results {
+  display: flex; 
+  flex-wrap: wrap; /* Allow cards to wrap to multiple lines */
+  gap: 20px; /* Spacing between cards */
+}
+
+.patient-results button {
+  background-color: white; /* Keep cards white */
+  color: navy; /* Navy text on cards */
+  border: 2px solid navy; /* Navy border */
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.patient-results h3 {
+  font-weight: bold; /* Bold heading within the card */
+  color: black; /* Or keep it navy, up to you! */
+}
+
+/* Add more styles as needed, like hover effects for buttons, etc..*/

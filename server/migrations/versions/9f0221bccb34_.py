@@ -1,8 +1,8 @@
-"""Initial migration + added to_dict method to prescription
+"""empty message
 
-Revision ID: e0f6196430eb
+Revision ID: 9f0221bccb34
 Revises: 
-Create Date: 2024-05-06 14:27:58.033034
+Create Date: 2024-05-08 01:53:13.361235
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e0f6196430eb'
+revision = '9f0221bccb34'
 down_revision = None
 branch_labels = None
 depends_on = None

@@ -24,7 +24,9 @@ class Patient(db.Model):
             "address": self.address,
             "insurance": self.insurance
         }
-
+    # Serialize_rules
+    prescriptions = db.relationship('Prescription', back_populates='patient')  # Relationship
+    serialize_rules = ('-prescriptions',)  # Exclude prescriptions during serialization of Patient
 
 
 # Pharmacist model
@@ -82,7 +84,7 @@ class Prescription(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     drug_id = db.Column(db.Integer, db.ForeignKey('drug.id'))  # Foreign key to Drug
-    patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'))  # Foreign key to Patient
+    patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'))  # Correct reference
     pharmacist_id = db.Column(db.Integer, db.ForeignKey('pharmacist.id'))  # Foreign key to Pharmacist
     created_at = db.Column(db.DateTime, default=datetime.utcnow)  # Timestamp of prescription
     instructions = db.Column(db.String(255))  # Instructions for use
@@ -91,8 +93,7 @@ class Prescription(db.Model):
     # Relationships to link Prescription with other models
     drug = db.relationship('Drug', back_populates='prescriptions')  # Link to Drug
     patient = db.relationship('Patient')  # Link to Patient
-    pharmacist = db.relationship('Pharmacist')  # Link to Pharmacist
-
+    pharmacist = db.relationship('Pharmacist')  # Link to Pharmacist 
 
     # Define to_dict() Method
     def to_dict(self):
@@ -116,7 +117,9 @@ class Prescription(db.Model):
             } if self.pharmacist else None,
         }
 
-
+    # serialize_rules
+    patient = db.relationship('Patient', back_populates='prescriptions')   # Relationship
+    serialize_rules = ('-patient',)  # Exclude patient during serialization of Prescription
 #----------------------------------------------------------------------------------------
 
 # Basket Model (Optional)

@@ -173,6 +173,24 @@ def search_patients():
 
 
 
+#Prescription Fetching by PatientID
+@app.route('/patients/<int:patient_id>/prescriptions', methods=['GET'])
+def get_prescriptions_by_patient(patient_id):
+    patient = Patient.query.get(patient_id)
+
+    if not patient:
+        return jsonify({"error": f"Patient with ID {patient_id} not found"}), 404
+
+    prescriptions = patient.prescriptions  # Access prescriptions through the relationship
+    prescription_list = [pres.to_dict() for pres in prescriptions]
+
+    return jsonify(prescription_list), 200
+
+
+
+
+
+
 # READ - Get a specific patient by ID
 @app.route('/patients/<int:id>', methods=['GET'])
 def get_patient_by_id(id):
