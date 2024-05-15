@@ -85,7 +85,7 @@ def get_drugs_by_ndc(ndc_id):
             return jsonify({"error": f"No drugs found with NDC_ID {ndc_id}"}), 404
         
         all_drugs = [drug.to_dict() for drug in drugs]
-        return jsonify(all_drugs), 200
+        return jsonify(all_drugs), 200 Anna Louise
 
     except ValueError as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
@@ -408,11 +408,11 @@ def get_or_create_prescriptions():
             return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
 
-@app.route('/prescriptions/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
-def prescription_by_id(id):
+@app.route('/prescriptions/<int:user_id>', methods=['GET', 'PATCH', 'DELETE'])
+def prescription_by_id(user_id):
     if request.method == 'GET':
-        prescription = Prescription.query.get(id)  # Retrieve the prescription by ID
-        
+        prescription = Prescription.query.get(user_id)  # Retrieve the prescription by ID
+                                                        #.filter_by(patient_id = user_id).all() 
         if not prescription:
             return jsonify({"error": "Prescription not found"}), 404
         
@@ -502,6 +502,78 @@ def delete_basket_item(id):
     except ValueError as e:
         db.session.rollback()
         return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+
+
+# Test Routes: 
+
+
+# @app.route('/patients/search', methods=['GET'])
+# def search_patients():
+#     #... (Your existing search functionality)
+
+#     # ... After finding patients ...
+#     for patient in patients:
+#         patient_dict = patient.to_dict()
+#         patient_dict['prescriptions'] = [
+#             pres.to_dict() for pres in patient.prescriptions
+#         ] 
+#         results.append(patient_dict) 
+
+#     return jsonify(results), 200
+
+
+# @app.route('/prescriptions/<int:id>/approve', methods=['PATCH'])
+# def approve_prescription(id):
+#     prescription = Prescription.query.get(id)
+#     if not prescription:
+#          return jsonify({"error": "Prescription not found"}), 404
+
+#     if prescription.status != 'pending':
+#         return jsonify({"message": "Prescription is not in pending status"}), 400 
+
+#     prescription.status = 'approved'
+
+#     # Consider if you want to update the patient's status:
+#     # ... (Potentially query and update patient status) 
+
+#     db.session.commit()
+#     return jsonify(prescription.to_dict()), 200
+
+
+# @app.route('/prescriptions/create_from_drug', methods=['POST']) 
+# def create_prescription_from_drug():
+#     data = request.get_json()
+#     # ... Validate data (drug_id, patient_id, instructions, etc.)
+#     if not all(key in data for key in ["drug_id", "patient_id"]):
+#         return jsonify({"error": "Fields 'drug_id' and 'patient_id' are required"}), 400
+    
+#     # Find the Drug and Patient based on IDs
+#     drug = Drug.query.get(data['drug_id'])
+#     patient = Patient.query.get(data['patient_id'])
+
+#     if not drug or not patient:
+#         return jsonify({"error": "Drug or patient not found"}), 404 
+
+#     new_prescription = Prescription(
+#         drug=drug,  # Associate the Drug object
+#         patient=patient,  # Associate the Patient object
+#         instructions=data.get('instructions', ''), 
+#         # ... other fields ...
+#     )
+
+#     db.session.add(new_prescription)
+#     db.session.commit()
+
+#     # ... Add to basket? (Consider your workflow)
+
+#     return jsonify(new_prescription.to_dict()), 201
+
+
+
+
+# test Routes above
+
+
 
 
 # Start the Flask server

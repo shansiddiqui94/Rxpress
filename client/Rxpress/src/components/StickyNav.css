@@ -1,57 +1,72 @@
-
-:root {
-  --nav-height: 60px; /* Define default height for nav bar */
-  --nav-transition: 0.3s ease-in-out; /* Smooth transition */
-}
-
-.sticky-nav .logo {
-  width: 100px; /* Adjust the size of the logo */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 20px; /* Space between the logo and navigation links */
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-}
-
+/* General Styles */
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
-  height: var(--nav-height);
-  width: 100%; /* Full width of the viewport */
-  transition: background-color var(--nav-transition); /* Smooth background color transition */
-  display: flex; /* Horizontal layout */
-  align-items: center; /* Vertical alignment */
-  padding: 10px;
+  left: 0; /* Ensure the navbar starts from the left edge */
+  width: 100vw; /* Use viewport width for full width */
+  background-color: #132342; /* Navy blue background */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px; /* Adjust padding as needed */
+  z-index: 1000; /* Ensure the navbar stays on top */
 }
 
+/* Logo */
 .logo {
-  height: 40px; /* Adjust to desired logo size */
-  margin-right: 20px;
+  width: 140px; /* Adjust width as needed */
+  cursor: pointer;
+  height: auto; /* Maintain aspect ratio */
 }
 
+/* Navigation Links */
 .nav-links {
-  list-style: none; /* No list bullets */
+  list-style: none;
   margin: 0;
   padding: 0;
-  display: flex; /* Horizontal layout */
 }
 
 .nav-links li {
-  margin-right: 20px; /* Space between nav links */
+  display: inline-block;
+  margin-right: 20px; /* Adjust spacing between links */
 }
 
 .nav-links a {
-  text-decoration: none; /* No underline */
-  color: white; /* Text color */
+  font-weight: 500;
+  color: #fff; /* White text color */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
 .nav-links a:hover {
-  text-decoration: underline; /* Underline on hover */
+  color: #ffd700; /* Change color on hover */
 }
 
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+}
 
+button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px; /* Adjust padding as needed */
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #fff; /* White background */
+  color: #132342; /* Blue text */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+}
 
+button:hover {
+  background-color: #132342; /* Darker blue background */
+  color: #fff; /* White text */
+  border-color: #132342; /* Darker blue border */
+}
 
+button:focus,
+button:focus-visible {
+  outline: none;
+}
