@@ -1,3 +1,5 @@
+/* index.css */
+
 /* Apply a CSS reset */
 * {
   margin: 0;
@@ -9,11 +11,18 @@
 body {
   margin: 0;
   font-family: sans-serif;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Define styles for the main content */
+main { 
+  padding-top: 60px; /* Adjust to match your navbar's height */
+  padding: 2rem; /* Maintains consistent padding */
 }
 
 /* Define styles for the container */
 .container {
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: auto; /* Prevent horizontal scrolling ONLY */
 }
 
 /* Define styles for the navbar */

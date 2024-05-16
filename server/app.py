@@ -30,7 +30,7 @@ migrate = Migrate(app, db)
 # Drug Routes
 
 #  Get Drug by name
-@app.route('/drugs', methods=['GET', 'POST'])
+@app.route('/drugs', methods=['GET', 'POST', 'DELETE'])
 def drugs():
     if request.method == 'GET':
         try:
@@ -51,7 +51,6 @@ def drugs():
 
         except ValueError as e:
             return jsonify({"error": f"An error occurred: {str(e)}"}), 500
-
 
     elif request.method == 'POST':
         data = request.get_json()
@@ -75,6 +74,30 @@ def drugs():
             db.session.rollback()
             return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
+    elif request.method == 'DELETE':
+        try:
+            name = request.args.get('name')
+            if not name:
+                return jsonify({'error': 'Missing name query parameter'}), 400 
+
+            drug = db.session.query(Drug).filter(Drug.name == name).first()
+
+            if not drug:
+                return jsonify({"error": f"Drug with name '{name}' not found"}), 404
+
+            db.session.delete(drug)
+            db.session.commit()
+
+            return jsonify({"message": f"Drug with name '{name}' deleted successfully"}), 200
+
+        except ValueError as e:
+            db.session.rollback()
+            return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+
+    else:
+        return jsonify({"error": "Unsupported method"}), 405  # Handle unsupported methods
+
+
 
 @app.route('/drugs/ndc/<ndc_id>', methods=['GET'])
 def get_drugs_by_ndc(ndc_id):
@@ -85,43 +108,11 @@ def get_drugs_by_ndc(ndc_id):
             return jsonify({"error": f"No drugs found with NDC_ID {ndc_id}"}), 404
         
         all_drugs = [drug.to_dict() for drug in drugs]
-        return jsonify(all_drugs), 200 Anna Louise
+        return jsonify(all_drugs), 200
 
     except ValueError as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
     
-
-#Route for Get by ID + Delete by ID
-@app.route('/drugs/<int:id>', methods=['GET', 'DELETE'])
-def drug_by_id(id):
-    if request.method == 'GET':
-        drug = Drug.query.get(id)  # Retrieve the drug by ID
-
-        if not drug:
-            return jsonify({"error": f"Drug with ID {id} not found"}), 404
-        
-        return jsonify(drug.to_dict()), 200  # Return drug details as JSON
-
-    elif request.method == 'DELETE':
-        try:
-            drug = Drug.query.get(id)  # Retrieve the drug by ID
-
-            if not drug:
-                return jsonify({"error": f"Drug with ID {id} not found"}), 404
-            
-            db.session.delete(drug)  # Delete the drug
-            db.session.commit()
-            
-            return jsonify({"message": f"Drug with ID {id} deleted successfully"}), 200
-
-        except ValueError as e:
-            db.session.rollback()
-            return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
-
-    else:
-        return jsonify({"error": "Unsupported method"}), 405  # Handle unsupported methods
-
-
 
 # Patient Routes
 
@@ -454,124 +445,55 @@ def prescription_by_id(user_id):
             return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
 
-# Basket Routes
+# Basket Routes (Stretch Goal)
 
-@app.route('/basket', methods=['GET', 'POST'])
-def basket():
-    if request.method == 'GET':
-        basket_items = Basket.query.all()  # Get all basket items
-        serialized_items = [item.to_dict() for item in basket_items]
-        return jsonify(serialized_items), 200
+# @app.route('/basket', methods=['GET', 'POST'])
+# def basket():
+#     if request.method == 'GET':
+#         basket_items = Basket.query.all()  # Get all basket items
+#         serialized_items = [item.to_dict() for item in basket_items]
+#         return jsonify(serialized_items), 200
     
-    elif request.method == 'POST':
-        data = request.get_json()
+#     elif request.method == 'POST':
+#         data = request.get_json()
 
-        if not data or not all(key in data for key in ["patient_id", "prescription_id"]):
-            return jsonify({"error": "Fields 'patient_id' and 'prescription_id' are required"}), 400
+#         if not data or not all(key in data for key in ["patient_id", "prescription_id"]):
+#             return jsonify({"error": "Fields 'patient_id' and 'prescription_id' are required"}), 400
         
-        try:
-            new_basket_item = Basket(
-                patient_id=data["patient_id"],
-                prescription_id=data["prescription_id"],
-                quantity=data.get("quantity", 1),  # Default quantity
-            )
+#         try:
+#             new_basket_item = Basket(
+#                 patient_id=data["patient_id"],
+#                 prescription_id=data["prescription_id"],
+#                 quantity=data.get("quantity", 1),  # Default quantity
+#             )
             
-            db.session.add(new_basket_item)
-            db.session.commit()
+#             db.session.add(new_basket_item)
+#             db.session.commit()
 
-            return jsonify(new_basket_item.to_dict()), 201
+#             return jsonify(new_basket_item.to_dict()), 201
 
-        except ValueError as e:
-            db.session.rollback()
-            return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+#         except ValueError as e:
+#             db.session.rollback()
+#             return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
 
-@app.route('/basket/<int:id>', methods=['DELETE'])
-def delete_basket_item(id):
-    try:
-        basket_item = Basket.query.get(id)
+# @app.route('/basket/<int:id>', methods=['DELETE'])
+# def delete_basket_item(id):
+#     try:
+#         basket_item = Basket.query.get(id)
 
-        if not basket_item:
-            return jsonify({"error": "Basket item not found"}), 404
+#         if not basket_item:
+#             return jsonify({"error": "Basket item not found"}), 404
         
-        db.session.delete(basket_item)
-        db.session.commit()  # Commit the deletion
+#         db.session.delete(basket_item)
+#         db.session.commit()  # Commit the deletion
         
-        return jsonify({"message": "Basket item deleted successfully"}), 200
+#         return jsonify({"message": "Basket item deleted successfully"}), 200
 
-    except ValueError as e:
-        db.session.rollback()
-        return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+#     except ValueError as e:
+#         db.session.rollback()
+#         return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
-
-# Test Routes: 
-
-
-# @app.route('/patients/search', methods=['GET'])
-# def search_patients():
-#     #... (Your existing search functionality)
-
-#     # ... After finding patients ...
-#     for patient in patients:
-#         patient_dict = patient.to_dict()
-#         patient_dict['prescriptions'] = [
-#             pres.to_dict() for pres in patient.prescriptions
-#         ] 
-#         results.append(patient_dict) 
-
-#     return jsonify(results), 200
-
-
-# @app.route('/prescriptions/<int:id>/approve', methods=['PATCH'])
-# def approve_prescription(id):
-#     prescription = Prescription.query.get(id)
-#     if not prescription:
-#          return jsonify({"error": "Prescription not found"}), 404
-
-#     if prescription.status != 'pending':
-#         return jsonify({"message": "Prescription is not in pending status"}), 400 
-
-#     prescription.status = 'approved'
-
-#     # Consider if you want to update the patient's status:
-#     # ... (Potentially query and update patient status) 
-
-#     db.session.commit()
-#     return jsonify(prescription.to_dict()), 200
-
-
-# @app.route('/prescriptions/create_from_drug', methods=['POST']) 
-# def create_prescription_from_drug():
-#     data = request.get_json()
-#     # ... Validate data (drug_id, patient_id, instructions, etc.)
-#     if not all(key in data for key in ["drug_id", "patient_id"]):
-#         return jsonify({"error": "Fields 'drug_id' and 'patient_id' are required"}), 400
-    
-#     # Find the Drug and Patient based on IDs
-#     drug = Drug.query.get(data['drug_id'])
-#     patient = Patient.query.get(data['patient_id'])
-
-#     if not drug or not patient:
-#         return jsonify({"error": "Drug or patient not found"}), 404 
-
-#     new_prescription = Prescription(
-#         drug=drug,  # Associate the Drug object
-#         patient=patient,  # Associate the Patient object
-#         instructions=data.get('instructions', ''), 
-#         # ... other fields ...
-#     )
-
-#     db.session.add(new_prescription)
-#     db.session.commit()
-
-#     # ... Add to basket? (Consider your workflow)
-
-#     return jsonify(new_prescription.to_dict()), 201
-
-
-
-
-# test Routes above
 
 
 

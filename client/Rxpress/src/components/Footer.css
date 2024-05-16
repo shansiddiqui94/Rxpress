@@ -2,9 +2,9 @@
 .footer {
     background-color: #132342; /* Dark background */
     color: white;
-    padding: 20px;
-    padding-top: 30px;
-    padding-bottom: 60px;
+    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: center;
     position: fixed; /* Stick to bottom */
     bottom: 0;
