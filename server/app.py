@@ -403,46 +403,37 @@ def get_or_create_prescriptions():
 def prescription_by_id(user_id):
     if request.method == 'GET':
         prescription = Prescription.query.get(user_id)  # Retrieve the prescription by ID
-                                                        #.filter_by(patient_id = user_id).all() 
         if not prescription:
             return jsonify({"error": "Prescription not found"}), 404
-        
         return jsonify(prescription.to_dict()), 200
     
     elif request.method == 'PATCH':
         data = request.get_json()
-
         try:
-            prescription = Prescription.query.get(id)  # Retrieve the prescription by ID
+            prescription = Prescription.query.get(user_id)  # Retrieve the prescription by ID
             if not prescription:
                 return jsonify({"error": "Prescription not found"}), 404
-            
             prescription.drug_id = data.get("drug_id", prescription.drug_id)
             prescription.patient_id = data.get("patient_id", prescription.patient_id)
             prescription.instructions = data.get("instructions", prescription.instructions)
-            
+            prescription.status = data.get("status", prescription.status)  # This line allows updating the status
             db.session.commit()
-            
             return jsonify(prescription.to_dict()), 200  # Return the updated prescription
-
         except ValueError as e:
             return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
     
     elif request.method == 'DELETE':
         try:
-            prescription = Prescription.query.get(id)  # Retrieve the prescription by ID
-            
+            prescription = Prescription.query.get(user_id)  # Retrieve the prescription by ID
             if not prescription:
                 return jsonify({"error": "Prescription not found"}), 404
-            
             db.session.delete(prescription)
             db.session.commit()  # Commit the deletion
-            
             return jsonify({"message": "Prescription deleted successfully"}), 200
-        
         except ValueError as e:
             db.session.rollback()
             return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+
 
 
 # Basket Routes (Stretch Goal)
