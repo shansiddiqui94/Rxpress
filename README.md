@@ -2,20 +2,54 @@
 
 express - for quick and easy refills
 
-Rxpress Pharmacy Dashboard App is a user-friendly platform designed to streamline the process of managing prescriptions for patients and pharmacists. With this app, users can log in to their personal account, add their prescriptions to a digital basket, and request approval from their pharmacist. Once approved, users can choose to pick up their medication in person or have it shipped to their location.
+Rxpress is an intuitive pharmacy management application aimed at simplifying the prescription process for both patients and pharmacists. It provides a seamless platform for managing prescriptions, allowing patients to conveniently order and track their medications, while enabling pharmacists to efficiently review and process prescription requests.
 
-Key Features:
 
-- Secure User Authentication: Patients and pharmacists can securely log in to access their accounts and manage prescriptions.
-- Prescription Management: Patients can add new prescriptions to their basket and request approval from their pharmacist.
-- Real-Time Status Updates: Users receive real-time updates on the status of their prescriptions, including pending, approved, and ready for pickup or shipping.
-- Basket Functionality: Patients can manage their basket by adding, removing, or updating prescription quantities.
-- Pharmacist Dashboard: Pharmacists can view and manage incoming prescription requests, approve or deny them, and communicate with patients.
+Key Features
+For Patients:
+Prescription Management: Easily add prescriptions to a digital basket for approval.
+Real-Time Status Updates: Receive instant updates on prescription status changes.
+Basket Functionality: Manage prescriptions in the digital basket, including adding, removing, or updating quantities.
 
-Whether you're a patient seeking a convenient way to manage your prescriptions or a pharmacist looking for an efficient system to track and process prescription requests, the Pharmacy Dashboard App is designed to meet your needs.
-
-### Stretch Goals:
-
-- **Medication Refill Reminders:** Send automated reminders to patients when it's time to refill their prescriptions.
-- **Inventory Management:** Integrate with pharmacy inventory systems to track stock levels and receive automatic resupply notifications.
-- **Patient Medication History:** Access a patient's complete medication history for better decision-making on prescriptions.
+For Pharmacists:
+Pharmacist Dashboard: Efficiently review and process incoming prescription requests.
+Prescription Review: Quickly review patient prescriptions and update their status.
+Red-Shift Toggle: Adjust screen colors to reduce eye strain during extended work sessions.
+Stretch Goals
+Authentication System: Implement a secure user authentication system for patient and pharmacist logins.
+Point of Sale (POS) Integration: Integrate with point-of-sale systems for seamless checkout and inventory management.
+Medication Refill Reminders: Send automated reminders to patients for prescription refills.
+Inventory Management: Integrate with pharmacy inventory systems for stock level tracking and resupply notifications.
+Patient Medication History: Access complete medication history for better prescription decisions.
+Backend (Flask, SQLAlchemy, Alembic)
+1. Models
+User Model: Represents both patients and pharmacists.
+Patient Model: Represents patients.
+Pharmacist Model: Represents pharmacists.
+Prescription Model: Represents prescriptions.
+Basket Model: Represents the digital basket for patients.
+2. Routes
+Prescription Routes: /prescriptions, /prescriptions/<int:id>.
+Basket Routes: /baskets, /baskets/<int:id>.
+3. Alembic Migration
+Initialize Alembic with flask db init.
+Create migration scripts with flask db migrate -m "Initial migration".
+Apply migrations with flask db upgrade.
+Frontend (React, React Router)
+1. Routes
+Dashboard: /dashboard.
+Prescriptions: /prescriptions.
+Basket: /basket.
+2. Components
+DashboardComponent
+PrescriptionListComponent
+BasketComponent
+Pharmacist Dashboard Structure
+Primary Goals
+Patient Search: Search for patients by name.
+Prescription Management: Review and update prescription status.
+Core Logic
+State Management: Track patients, prescriptions, loading states, and errors.
+Fetch Functions: Fetch patients and prescriptions from the backend.
+Event Handlers: Handle search queries and patient selection.
+Rendering Logic: Render patient listings and prescription details dynamically.
