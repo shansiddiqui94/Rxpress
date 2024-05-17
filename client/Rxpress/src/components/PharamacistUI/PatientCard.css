@@ -1,34 +1,45 @@
-/* Style the search form container */
-.searchForm {
+/* Container for the search bar */
+.wrap {
+  width: 30%;
+  margin: 20px auto;
+  /* Adjust the margin to move the position on the page */
+}
+
+/* Search bar styling */
+.search {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center; /* Center the form horizontally */
-  margin: 20px auto; /* Add some margin above and below */
+  position: center;
 }
 
-/* Style the input field */
-.searchForm input[type="text"] {
-  width: 300px; /* Adjust the width as needed */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px 0 0 5px; /* Rounded corners on the left */
-  font-size: 16px;
+/* Input field styling */
+.searchTerm {
+  width: 100%;
+  border: 3px solid #FF6F61;
+  border-right: none;
+  padding: 17px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #8f97a7;
 }
 
-/* Style the search button */
-.searchForm button {
-  padding: 10px 15px;
-  background-color: #007bff; /* Blue button color */
-  color: white;
-  border: none;
-  border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+/* Input field focus state */
+.searchTerm:focus {
+  color: #FF5733;
+}
+
+/* Search button styling */
+.searchButton {
+  width: 54px;
+  height: 40px;
+  border: 1px solid #FF5733;
+  background: #FF5733;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
-  font-size: 16px;
-}
-
-/* Search button hover effect */
-.searchForm button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  font-size: 20px;
 }
 
 /* Patient Card List Styles */

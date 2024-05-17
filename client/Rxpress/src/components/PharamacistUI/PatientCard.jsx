@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '/Users/DanielSkies/Development/code/phase-5/Rxpress/client/Rxpress/src/components/PharamacistUI/PatientCard.css';
-
+import PatientImage from '../assets/patient.png';
 function PatientCard({ onSelect }) {
   const [fetchPt, setFetchPt] = useState([]); // Initialize as an empty array
   const [searchTerm, setSearchTerm] = useState(''); // State for search input
@@ -22,28 +22,31 @@ function PatientCard({ onSelect }) {
   };
 
   return (
-    <div>
-      <div className='searchForm'>
-        <input
-          type="text"
-          value={searchTerm}
-          placeholder="Type Patient Name" 
-          onChange={(event) => setSearchTerm(event.target.value)} 
-        />
-      </div>
-      <button onClick={handleSearch}>
-        {/* Add the search emoji using Unicode */}
-        <span role="img" aria-label="Search">🔍</span> 
+
+    <div className="wrap">
+    <div className="search">
+      <input
+        type="text"
+        value={searchTerm}
+        placeholder="Type Patients Name...."
+        onChange={(event) => setSearchTerm(event.target.value)}
+        className="searchTerm"
+        id="input_text"
+      />
+      <button type="submit" className="searchButton" onClick={handleSearch}>
+      <img src={PatientImage} alt="Search" aria-label="Search" />
       </button>
 
+
+
+
+     </div>
       <div className='patientCardList'>
         {fetchPt.map(patient => (
           <div className="card" key={patient.id} onClick={() => handleSelect(patient.id)}> 
-            {/* ^^^ Added onClick event to trigger handleSelect */}
             <h3>{patient.name}</h3>
             <p>{patient.address}</p>
             <p>{patient.insurance}</p>
-            {/* Add onClick event to trigger handleSelect */}
             <button onClick={() => handleSelect(patient.id)}>Select</button>
           </div>
         ))}
