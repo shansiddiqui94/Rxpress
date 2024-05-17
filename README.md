@@ -1,6 +1,7 @@
-# Rxpress
+# Rxpress  
 
-express - for quick and easy refills
+ **for quick and easy refills**
+
 
 
 Rxpress is an intuitive pharmacy management application aimed at simplifying the prescription process for both patients and pharmacists. It provides a seamless platform for managing prescriptions, allowing patients to conveniently order and track their medications, while enabling pharmacists to efficiently review and process prescription requests.
