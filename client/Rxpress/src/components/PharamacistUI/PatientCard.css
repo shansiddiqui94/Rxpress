@@ -44,20 +44,20 @@
 
 /* Patient Card List Styles */
 .patientCardList {
-  display: flex;          /* Use flexbox for layout */
-  flex-wrap: wrap;      /* Allow cards to wrap to the next line */
-  justify-content: center;  /* Center cards horizontally */
-  gap: 20px;              /* Add some space between cards */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+  gap: 20px; /* Add some space between cards */
 }
 
 .card {
-  width: 250px; /* Adjust the width as needed */
+  /* Card styles */
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
+
 
 .card h3 {
   margin-top: 0;
