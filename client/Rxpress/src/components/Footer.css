@@ -4,7 +4,7 @@
     color: white;
     padding: 10px;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     text-align: center;
     position: fixed; /* Stick to bottom */
     bottom: 0;
@@ -25,4 +25,20 @@
   .footer .social-icons a {
     margin: 0 10px; /* Space between icons */
   }
+
+  /* Target redshift  */
+  body {
+    background-color: var(--default-bg);
+    color: var(--default-text);
+    transition: background-color 0.5s, color 0.5s; 
+  }
+
+  .redshift-container.redshift-active {
+    background-color: var(--redshift-bg);
+    color: var(--redshift-text);
+  }
+  
+
+  
+
   

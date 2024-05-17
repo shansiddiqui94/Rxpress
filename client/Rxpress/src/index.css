@@ -48,3 +48,91 @@ a {
 a:hover {
   color: #ffd700; /* Change color on hover */
 }
+
+/* Toggle Redshift here */
+:root {
+  --default-bg: #ffffff;   
+  --default-text: #000000; 
+  --redshift-bg: #d2bebf;
+  --redshift-text: #5C3D32;
+}
+
+body {
+  background-color: var(--default-bg);
+  color: var(--default-text);
+  transition: background-color 0.5s, color 0.5s; 
+}
+
+.redshift-active {
+  background-color: var(--redshift-bg);
+  color: var(--redshift-text);
+}
+
+nav button { 
+  background-color: transparent;
+  color: var(--default-text);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+nav button.redshift-active { 
+  background-color: var(--redshift-bg); 
+  color: var(--redshift-text);         
+}
+
+
+/* Toggle Switch Styles */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+/* Background for the slider toggle */
+input:checked + .slider {
+  background-color:#8A0015; 
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--redshift-bg); 
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
