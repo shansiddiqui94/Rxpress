@@ -20,13 +20,6 @@ Rxpress is an intuitive pharmacy management application aimed at simplifying the
 - **Prescription Review**: Quickly review patient prescriptions and update their status.
 - **Red-Shift Toggle**: Adjust screen colors to reduce eye strain during extended work sessions.
 
-## Stretch Goals
-
-- **Authentication System**: Implement a secure user authentication system for patient and pharmacist logins.
-- **Point of Sale (POS) Integration**: Integrate with point-of-sale systems for seamless checkout and inventory management.
-- **Medication Refill Reminders**: Send automated reminders to patients for prescription refills.
-- **Inventory Management**: Integrate with pharmacy inventory systems for stock level tracking and resupply notifications.
-- **Patient Medication History**: Access complete medication history for better prescription decisions.
 
 ## Backend (Flask, SQLAlchemy, Alembic)
 
@@ -62,6 +55,15 @@ Rxpress is an intuitive pharmacy management application aimed at simplifying the
 - **DashboardComponent**
 - **PrescriptionListComponent**
 - **BasketComponent**
+
+## Stretch Goals
+
+- **Authentication System**: Implement a secure user authentication system for patient and pharmacist logins.
+- **Point of Sale (POS) Integration**: Integrate with point-of-sale systems for seamless checkout and inventory management.
+- **Medication Refill Reminders**: Send automated reminders to patients for prescription refills.
+- **Inventory Management**: Integrate with pharmacy inventory systems for stock level tracking and resupply notifications.
+- **Patient Medication History**: Access complete medication history for better prescription decisions.
+
 
 ## Pharmacist Dashboard Structure
 
