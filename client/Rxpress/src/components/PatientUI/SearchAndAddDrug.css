@@ -1,14 +1,23 @@
 .search-and-add-container {
-    background-color: #fff; /* White background */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  }
-  
-  .search-and-add-container h2 {
-    color: #1A73E8; /* Blue heading */
-    margin-bottom: 15px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.search-results, .prescriptions-basket {
+  list-style-type: none;
+  padding: 0;
+}
+
+.search-results li, .prescriptions-basket li {
+  margin: 10px 0;
+}
+
+.search-results button, .prescriptions-basket button {
+  margin-left: 10px;
+}
+
   
   input[type="text"] {
     width: 100%;

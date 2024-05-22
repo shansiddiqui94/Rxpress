@@ -1,9 +1,9 @@
 import './App.css'
 import Footer from './components/Footer';
 import StickyNav from './components/StickyNav'
-import { useState } from 'react'
 import PharmacistDash from './components/PharamacistUI/PharmacistDash';
-// import PatientCard from './components/PharamacistUI/PatientCard';
+import PatientDashboard from './components/PatientUI/PatientDashboard';
+
 function App() {
 
   
@@ -11,7 +11,8 @@ function App() {
     <>
       <div className='container'>
       <StickyNav/>
-      <PharmacistDash/>
+      {/* <PharmacistDash/> */}
+      <PatientDashboard/>
       <Footer/>
       </div>
     </>

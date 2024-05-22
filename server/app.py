@@ -29,7 +29,7 @@ migrate = Migrate(app, db)
 
 # Drug Routes
 
-#  Get Drug by name
+# Get Drug by name
 @app.route('/drugs', methods=['GET', 'POST', 'DELETE'])
 def drugs():
     if request.method == 'GET':
@@ -38,7 +38,8 @@ def drugs():
             if not name:
                 return jsonify({'error': 'Missing name query parameter'}), 400 
 
-            drugs = db.session.query(Drug).join(Prescription).filter(Drug.name == name).all()
+            # Use ilike for case-insensitive search and partial matching
+            drugs = db.session.query(Drug).filter(Drug.name.ilike(f'%{name}%')).all()
 
             # Format results including prescriptions
             results = []
@@ -97,6 +98,7 @@ def drugs():
     else:
         return jsonify({"error": "Unsupported method"}), 405  # Handle unsupported methods
 
+    
 
 
 @app.route('/drugs/ndc/<ndc_id>', methods=['GET'])
