@@ -1,18 +1,17 @@
 import './App.css'
 import Footer from './components/Footer';
 import StickyNav from './components/StickyNav'
-import PharmacistDash from './components/PharamacistUI/PharmacistDash';
-import PatientDashboard from './components/PatientUI/PatientDashboard';
+import { Outlet } from 'react-router-dom';
 
 function App() {
 
   
   return (
     <>
-      <div className='container'>
+   
+      <div className='container'> 
       <StickyNav/>
-      {/* <PharmacistDash/> */}
-      <PatientDashboard/>
+      <Outlet/>
       <Footer/>
       </div>
     </>
