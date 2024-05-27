@@ -1,0 +1,121 @@
+/* Global styles for the html and body */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background-color: #132342; /* Dark background */
+    color: white;
+    padding: 100px 20px; /* Add padding for spacing */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-size: cover; /* Cover the background image */
+    background-position: center; /* Center the background image */
+    position: relative;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    background-color: #007BFF; /* Primary blue background */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cta-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .hero-slogan {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    text-align: right;
+  }
+  
+  .hero-slogan h2 {
+    font-size: 2rem;
+    color: #fff;
+  }
+  
+  /* Features Section */
+  .features {
+    padding: 50px 20px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .feature {
+    max-width: 300px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #132342; /* Consistent dark blue background */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .feature img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  
+  .feature h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: white; /* White text color */
+  }
+  
+  .feature p {
+    font-size: 1rem;
+    color: white; /* White text color */
+  }
+  
+  /* Additional Info Section */
+  .additional-info {
+    padding: 50px 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+  }
+  
+  .additional-info h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .additional-info p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #666;
+  }
+  

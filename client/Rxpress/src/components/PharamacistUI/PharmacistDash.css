@@ -6,6 +6,7 @@
     flex-wrap: wrap;      /* Allow cards to wrap to the next line */
     justify-content: center;  /* Center cards horizontally */
     gap: 20px;             /* Add some space between cards */
+    margin-bottom: 690px;
   }
   
   /* Individual prescription card */

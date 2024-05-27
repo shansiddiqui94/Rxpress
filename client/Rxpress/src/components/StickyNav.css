@@ -1,72 +1,101 @@
-/* General Styles */
+/* Navbar Styles */
 .navbar {
-  position: sticky;
-  top: 0;
-  left: 0; /* Ensure the navbar starts from the left edge */
-  width: 100vw; /* Use viewport width for full width */
-  background-color: #132342; /* Navy blue background */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px; /* Adjust padding as needed */
-  z-index: 1000; /* Ensure the navbar stays on top */
+  background-color: #132342; /* Dark background */
+  color: white;
+  padding: 15px 0;
+  position: sticky; /* Stick to top */
+  top: 0; /* Stick to top of the page */
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure the navbar stays on top of other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
 }
 
-/* Logo */
+/* Ensure the navbar container is full width */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure the container is full width */
+  max-width: 1280px; /* Optional: constrain the width for larger screens */
+  margin: 0 auto; /* Center the container */
+  padding: 0 20px; /* Optional: add padding for consistent spacing */
+}
+
+/* Logo styles */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  margin-right: auto; /* Move logo to the far left */
+}
+
 .logo {
   width: 140px; /* Adjust width as needed */
   cursor: pointer;
   height: auto; /* Maintain aspect ratio */
+  font-size: 1.2rem; /* Adjusted size */
+  font-weight: bold; /* Bold for emphasis */
+  color: white; /* White text color */
+  text-decoration: none; /* No underline */
 }
 
-/* Navigation Links */
-.nav-links {
+/* Navbar menu styles */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the navigation links */
+  flex: 1;
+}
+
+.navbar-links {
   list-style: none;
+  display: flex;
   margin: 0;
   padding: 0;
 }
 
-.nav-links li {
-  display: inline-block;
-  margin-right: 20px; /* Adjust spacing between links */
+.navbar-links li {
+  margin: 0 20px; /* Adjust spacing between links */
 }
 
-.nav-links a {
+.navbar-links a {
   font-weight: 500;
   color: #fff; /* White text color */
   text-decoration: none;
   transition: color 0.3s ease; /* Smooth color transition */
 }
 
-.nav-links a:hover {
+.navbar-links a:hover {
   color: #ffd700; /* Change color on hover */
 }
 
-/* Navigation Buttons */
-.nav-buttons {
+/* Navbar action button styles */
+.navbar-actions {
   display: flex;
+  align-items: center;
+  margin-left: auto; /* Move buttons to the far right */
 }
 
-button {
+.navbar-button {
+  background-color: #4CAF50; /* Green */
   border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 10px; /* Adjust spacing between buttons */
   border-radius: 5px;
-  padding: 8px 16px; /* Adjust padding as needed */
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #fff; /* White background */
-  color: #132342; /* Blue text */
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #132342; /* Darker blue background */
-  color: #fff; /* White text */
-  border-color: #132342; /* Darker blue border */
+.navbar-button:hover {
+  background-color: #3e8e41;
 }
 
-button:focus,
-button:focus-visible {
+.navbar-button:focus,
+.navbar-button:focus-visible {
   outline: none;
 }

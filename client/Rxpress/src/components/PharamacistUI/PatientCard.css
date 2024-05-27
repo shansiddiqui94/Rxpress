@@ -1,6 +1,7 @@
 /* Container for the search bar */
 .wrap {
-  width: 30%;
+  width: 50%;
+  height: 30%;
   margin: 20px auto;
   /* Adjust the margin to move the position on the page */
 }
@@ -9,19 +10,21 @@
 .search {
   width: 100%;
   display: flex;
-  position: center;
+  justify-content: center;
+  padding-top: 44px;
 }
 
 /* Input field styling */
 .searchTerm {
-  width: 100%;
-  border: 3px solid #FF6F61;
+  width: calc(100% - 60px); /* Adjust width to fit the button */
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #FF5733;
   border-right: none;
-  padding: 17px;
-  height: 20px;
   border-radius: 5px 0 0 5px;
+  font-size: 16px;
   outline: none;
-  color: #8f97a7;
+  box-sizing: border-box;
 }
 
 /* Input field focus state */
@@ -31,7 +34,8 @@
 
 /* Search button styling */
 .searchButton {
-  width: 54px;
+  margin: 0px;
+  width: 60px;
   height: 40px;
   border: 1px solid #FF5733;
   background: #FF5733;
@@ -40,8 +44,12 @@
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0px;
 }
-
 /* Patient Card List Styles */
 .patientCardList {
   display: grid;
