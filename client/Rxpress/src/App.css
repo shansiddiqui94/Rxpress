@@ -1,28 +1,31 @@
+/* Remove the max-width and text-align center from #root to allow full-width layout */
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  text-align: center;
 }
 
-.main-content { /* Added a class to your main content area */
+/* Maintain padding for the main content */
+.main-content {
   padding-top: 60px; /* Adjust to match your navbar's height */
   padding: 2rem;
 }
 
-
+/* Styles for the logo */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Keyframes for logo spin animation */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -32,16 +35,24 @@
   }
 }
 
+/* Animation for logo when prefers-reduced-motion is not set */
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
 
+/* Styles for card component */
 .card {
   padding: 2em;
+  background-color: #fff; /* Add background color for the card */
+  border: 1px solid #ddd; /* Add border for the card */
+  border-radius: 8px; /* Add rounded corners for the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for the card */
+  margin: 20px; /* Add margin around the card */
 }
 
+/* Styles for read-the-docs link */
 .read-the-docs {
   color: #888;
 }
