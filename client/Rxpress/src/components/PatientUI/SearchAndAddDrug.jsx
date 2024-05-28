@@ -369,8 +369,12 @@ function SearchAndAddDrug({ onDrugSelect, patientId, onPrescriptionAdded }) {
       {searchResults.length > 0 && (
         <ul className="search-results">
           {searchResults.map((drug) => (
-            <li key={drug.id}>
-              {drug.name} <button onClick={() => handleAddDrug(drug)}>Add to Basket</button>
+            <li key={drug.id} className="drug-item">
+              <div className="drug-info">
+                <strong>{drug.name}</strong>
+                <p>{drug.description}</p> 
+              </div>
+              <button onClick={() => handleAddDrug(drug)}>Add to Basket</button>
             </li>
           ))}
         </ul>
@@ -380,3 +384,4 @@ function SearchAndAddDrug({ onDrugSelect, patientId, onPrescriptionAdded }) {
 }
 
 export default SearchAndAddDrug;
+

@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="footer">
       <p>
-        &copy; {new Date().getFullYear()} Your Company Name. All rights reserved.
+        &copy; {new Date().getFullYear()} Rxpress. All rights reserved.
       </p>
       <div className="social-icons">
         {/* Add social media links here (optional) */}

@@ -83,8 +83,10 @@ function PharmacistDash() {
         {prescriptionData.map((prescription, index) => (
           <div className="prescription-card" key={prescription.id}>
             <h3>Prescription {index + 1}</h3>
+            <p>NDC: {prescription.drug.ndc_id}</p>
             <p>Medication: {prescription.drug.name}</p>
             <p>Dosage: {prescription.drug.dosage_form}</p>
+            <p>Description: {prescription.drug.description}</p>
             <p>Status: {prescription.status}
               <select 
                 value={prescription.status} 
@@ -96,6 +98,7 @@ function PharmacistDash() {
                 <option value="rejected" style={{ color: 'red' }}>Rejected</option>
               </select>
             </p>
+            {/* Currently Instructuion autosave, will add submit button in the future */}
             <p>Instructions: 
                  <textarea 
                   value={prescription.instructions || ''} 

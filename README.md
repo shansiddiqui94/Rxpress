@@ -63,6 +63,7 @@ Rxpress is an intuitive pharmacy management application aimed at simplifying the
 - **Medication Refill Reminders**: Send automated reminders to patients for prescription refills.
 - **Inventory Management**: Integrate with pharmacy inventory systems for stock level tracking and resupply notifications.
 - **Patient Medication History**: Access complete medication history for better prescription decisions.
+- **Pharmacy on Demand:** Certified pharmacists are available on demand to fill prescriptions when a customer requests it or needs more assistance. At Rxpress, we put the customer's time and care first.
 
 
 ## Pharmacist Dashboard Structure

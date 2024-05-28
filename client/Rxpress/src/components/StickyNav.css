@@ -3,7 +3,7 @@
   background-color: #132342; /* Dark background */
   color: white;
   padding: 15px 0;
-  position: sticky; /* Stick to top */
+  position: sticky; /* using "fixed" will make it stick*/
   top: 0; /* Stick to top of the page */
   left: 0;
   width: 100%;
