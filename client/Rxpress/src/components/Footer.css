@@ -1,44 +1,44 @@
 /* Footer.css */
 .footer {
-    background-color: #132342; /* Dark background */
-    color: white;
-    padding: 10px;
-    padding-top: 10px;
-    padding-bottom: 0px;
-    text-align: center;
-    position: fixed; /* Stick to bottom */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  }
-  
-  .footer a { /* Style links */
-    color: #f0ad4e; /* Orange */
-    text-decoration: none;
-  }
-  
-  .footer a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Optional: Social Media Icons */
-  .footer .social-icons a {
-    margin: 0 10px; /* Space between icons */
-  }
+  background-color: #132342; /* Dark background */
+  color: white;
+  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  text-align: center;
+  position: fixed; /* Stick to bottom */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
 
-  /* Target redshift  */
-  body {
-    background-color: var(--default-bg);
-    color: var(--default-text);
-    transition: background-color 0.5s, color 0.5s; 
-  }
+.footer a { /* Style links */
+  color: #f0ad4e; /* Orange */
+  text-decoration: none;
+}
 
-  .redshift-container.redshift-active {
-    background-color: var(--redshift-bg);
-    color: var(--redshift-text);
-  }
-  
+.footer a:hover {
+  text-decoration: underline;
+}
 
-  
+/* Social Media Icons  not working atm*/
+.footer .social-icons a {
+  margin: 0 10px; /* Space between icons */
+  color: #f0ad4e; /* Color for the icons */
+}
 
-  
+.footer .social-icons a:hover {
+  color: #fff; /* Color on hover */
+}
+
+/* Target redshift  */
+body {
+  background-color: var(--default-bg);
+  color: var(--default-text);
+  transition: background-color 0.5s, color 0.5s; 
+}
+
+.redshift-container.redshift-active {
+  background-color: var(--redshift-bg);
+  color: var(--redshift-text);
+}

@@ -1,19 +1,17 @@
 import React from 'react';
 import './Footer.css'; // Import your CSS file
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
 
 function Footer() {
   return (
     <footer className="footer">
       <p>
+        Privacy Notice | Site Terms | Cookie Settings | Do Not Share My Personal Information
+      </p>
+      <p>
         &copy; {new Date().getFullYear()} Rxpress. All rights reserved.
       </p>
-      <div className="social-icons">
-        {/* Add social media links here (optional) */}
-        <a href="https://twitter.com/yourcompany" target="_blank" rel="noopener noreferrer">
-          <i className="fab fa-twitter"></i>
-        </a>
-        {/* ... other social icons ... */}
-      </div>
+      
     </footer>
   );
 }
